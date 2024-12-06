@@ -30,12 +30,14 @@ ConfigError getParameters(int argc, char** argv, Parameters* p)
 
     const char* progname = "advent";
 
+    struct arg_lit* arg_part2   = arg_litn("p","part", 0, 1, "enable or run part 2");
+
     struct arg_lit* arg_verbosity   = arg_litn("v","verbose", 0, 2, "increase logging verbosity");
     struct arg_file* arg_log         = arg_filen("l", "log", "<log_file>", 0, 1, NULL);
     struct arg_lit* help             = arg_litn(NULL,"help", 0, 1, "print this help and exit");
     struct arg_lit* vers             = arg_litn(NULL,"version", 0, 1, "print version information and exit");
     struct arg_end* end             = arg_end(20);
-    void* argtable[]                = {arg_verbosity,arg_log,help,vers,end};
+    void* argtable[]                = {arg_part2,arg_verbosity,arg_log,help,vers,end};
     int nerrors;
 
 
@@ -73,6 +75,10 @@ ConfigError getParameters(int argc, char** argv, Parameters* p)
             p->log_dirname_str = strdup(dname);
             p->user_specified_log_file = true;
             free(filename);
+        }
+        if(arg_part2->count > 0)
+        {
+            p->part2++;
         }
         exitcode = E_SUCCESS_AND_DO;
     }

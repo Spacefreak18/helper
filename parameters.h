@@ -9,6 +9,8 @@ typedef struct
     int verbosity_count;
     bool user_specified_log_file;
 
+    bool part2;
+
     char* log_filename_str;
     char* log_fullfilename_str;
     char* log_dirname_str;
