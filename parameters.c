@@ -29,6 +29,7 @@ ConfigError getParameters(int argc, char** argv, Parameters* p)
     ConfigError exitcode = E_SOMETHING_BAD;
 
     const char* progname = "advent";
+    p->part2 = 0;
 
     struct arg_lit* arg_part2   = arg_litn("p","part", 0, 1, "enable or run part 2");
 
